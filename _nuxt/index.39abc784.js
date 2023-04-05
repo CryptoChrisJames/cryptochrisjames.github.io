@@ -1,0 +1,1 @@
+import{a as o,b as s,o as t,F as a,e}from"./entry.ca786f61.js";const n={},r=e("h1",null,"CryptoChrisJames' Blog",-1),c=e("p",null,"Welcome! You've arrived at my personal blog.",-1);function l(_,d){return t(),s(a,null,[r,c],64)}const m=o(n,[["render",l]]);export{m as default};
