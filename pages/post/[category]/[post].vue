@@ -1,12 +1,8 @@
 <template>
-    <div v-if="data" class="article">
-        <span v-for="b in data" :key="b.id">
-            <span v-if="b._path == path">
-                <ContentRenderer>
-                    <ContentRendererMarkdown  :value="b" />
-                </ContentRenderer>
-            </span>
-        </span>
+    <div v-if="blog" class="article">
+        <ContentRenderer>
+            <ContentRendererMarkdown  :value="blog" />
+        </ContentRenderer>
     </div>
 </template>
 
@@ -15,4 +11,5 @@ const { category, post } = useRoute().params;
 const path = `/${category}/${post}`
 const { data } = await useAsyncData('post', 
     () => queryContent(`/${category}`).find());
+const blog = data._rawValue.find(b => b._path == path);
 </script>
