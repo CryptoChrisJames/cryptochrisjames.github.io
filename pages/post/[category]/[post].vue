@@ -1,9 +1,7 @@
 <template>
-    <ContentRenderer :value="data" />
+    <ContentDoc :path="`/${category}/${post}`" />
 </template>
 
 <script setup>
 const { category, post } = useRoute().params;
-const { data } = await useAsyncData('post', 
-    () => queryContent(`/${category}/${post}`).findOne());
 </script>
