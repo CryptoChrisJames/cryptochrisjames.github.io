@@ -10,14 +10,14 @@ export default {
             strict: true, 
         }
     },
-    css: ["@/assets/main.sass"],
-    vite: {
-        css: {
-            // preprocessorOptions: {
-            //     sass: {
-            //         additionalData: '@import "@/assets/styles/_variables.sass"',
-            //     },
-            // },
-        },
-    },
+    css: ["@/assets/styles/_variables.scss", "@/assets/styles/_colors.scss"],
+    // vite: {
+    //     css:{
+    //         preprocessorOptions: {
+    //             sass: {
+    //                 additionalData: '@import "@/assets/styles/_variables.sass";',
+    //             },
+    //         }
+    //     }
+    // },
 }

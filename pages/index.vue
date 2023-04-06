@@ -15,3 +15,4 @@ const goToPost = (path) => {
     router.push(`post${path}`);
 };
 </script>
+

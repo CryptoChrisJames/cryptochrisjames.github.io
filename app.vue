@@ -12,3 +12,12 @@
     </div>
   </div>
 </template>
+
+<style lang="scss">
+@import './assets/styles/colors';
+
+body, html{
+  background-color: $black;
+  color: $white;
+}
+</style>
