@@ -5,6 +5,9 @@ export default {
     ],
     target: 'static',
     router: {
-        base: '/cryptochrisjames.github.io/'
+        base: '/cryptochrisjames.github.io/',
+        options: { 
+            strict: true, 
+        }
     }
 }
