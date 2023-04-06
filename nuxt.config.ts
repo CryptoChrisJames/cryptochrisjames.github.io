@@ -9,5 +9,15 @@ export default {
         options: { 
             strict: true, 
         }
-    }
+    },
+    css: ["@/assets/main.sass"],
+    vite: {
+        css: {
+            // preprocessorOptions: {
+            //     sass: {
+            //         additionalData: '@import "@/assets/styles/_variables.sass"',
+            //     },
+            // },
+        },
+    },
 }
