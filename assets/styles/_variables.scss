@@ -1,11 +1,11 @@
-$desktopMin: 1024px;
-$desktopMax: 1815px;
+$desktopMin: 500px;
+$desktopMax: 777px;
 
-$tabletMin: 768px;
-$tabletMax: $desktopMin - 1px;
+// $tabletMin: 768px;
+// $tabletMax: $desktopMin - 1px;
 
 $phoneMin: 320px;
-$phoneMax: $tabletMin - 1px;
+$phoneMax: $desktopMin - 1px;
 
 
 @mixin phone {
