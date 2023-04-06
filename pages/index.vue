@@ -9,7 +9,6 @@
 <script setup>
 const router = useRouter();
 const { data } = await useAsyncData('home', () => queryContent('/tech').find());
-console.log(data);
 const goToPost = (path) => {
     router.push(`post${path}`);
 };
