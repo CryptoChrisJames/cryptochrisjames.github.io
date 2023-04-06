@@ -1,10 +1,13 @@
 <template>
-    <div v-if="$route.params" class="blog-article">
-        <ContentDoc :path="blogPath" />
+    <div v-if="data" class="article">
+        <ContentRenderer>
+            <ContentRendererMarkdown :value="data" />
+        </ContentRenderer>
     </div>
 </template>
 
 <script setup>
 const { category, post } = useRoute().params;
-const blogPath = `/${category}/${post}`;
+const { data } = await useAsyncData('post', 
+    () => queryContent(`/${category}/${post}`).findOne());
 </script>
