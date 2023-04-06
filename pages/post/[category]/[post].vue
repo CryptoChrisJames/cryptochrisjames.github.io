@@ -1,8 +1,12 @@
 <template>
     <div v-if="data" class="article">
-        <ContentRenderer>
-            <ContentRendererMarkdown :value="data" />
-        </ContentRenderer>
+        <span v-for="b in data" :key="b.id">
+            <span v-if="b._path == path">
+                <ContentRenderer>
+                    <ContentRendererMarkdown  :value="b" />
+                </ContentRenderer>
+            </span>
+        </span>
     </div>
 </template>
 
@@ -10,5 +14,5 @@
 const { category, post } = useRoute().params;
 const path = `/${category}/${post}`
 const { data } = await useAsyncData('post', 
-    () => queryContent(`/${category}`).where({_path: path}).findOne());
+    () => queryContent(`/${category}`).find());
 </script>
