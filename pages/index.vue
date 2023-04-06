@@ -1,9 +1,11 @@
 <template>
-    <div class="content-list" v-for="post in data" :key="post.id">
-        <div @click="goToPost(post._path)">
-            <h1>{{ post.title }}</h1>
+    <span v-if="data">
+        <div class="content-list" v-for="post in data" :key="post.id">
+            <div @click="goToPost(post._path)">
+                <h1>{{ post.title }}</h1>
+            </div>
         </div>
-    </div>
+    </span>
 </template>
 
 <script setup>
