@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <nav :class="[{'.navbar-hidden': !showNav}]">
+    <div
+      class="nav-wrapper" 
+      :class="[{'navbar-hidden': !showNav}]">
       <div class="navbar-logo">
         <a @click="goHome()"><img src="./assets/images/logo.png" alt="your logo"></a>
       </div>
@@ -10,7 +12,7 @@
           <li><a href="mailto:social@cryptochrisjames.com?subject=Reaching Out">Contact</a></li>
         </ul>
       </div>
-    </nav>
+    </div>
     <div class="content">
       <NuxtPage/>
     </div>
@@ -18,22 +20,24 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 const goHome = async () => {
   await navigateTo('/');
 }
 
 var lastScrollPosition = 0;
-var showNav = true;
+var showNav = ref(true);
 
 const onScroll = () => {
   var currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
   if(currentScrollPosition < 0) {
       return;
   }
-  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) {
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 100) {
       return;
   }
-  showNav = currentScrollPosition < lastScrollPosition;
+  showNav.value = currentScrollPosition < lastScrollPosition;
   lastScrollPosition = currentScrollPosition;
 }
 
@@ -70,20 +74,22 @@ body, html{
 .content {
   flex: 1;
   margin-top: 80px;
+  padding: 10px 25px;
 }
 
-nav {
+.nav-wrapper {
   background-color: $black;
   position: fixed;
   z-index: 999;
   max-width: 777px;
   width: 100%;
   display: flex;
-  height: 55px;
+  height: 48px;
   -webkit-box-pack: justify;
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
+  color: $white;
   transform: translate3d(0, 0, 0);
   transition: 0.3s all ease-out;
   
@@ -92,12 +98,14 @@ nav {
         0 2px 4px #467baaa8;
       background-color: $darkBlack;
       opacity: .92;
+      padding: 0;
     }
 }
 
 .navbar-logo img {
   height: 50px;
-  padding: 0 7px
+  padding: 0 7px;
+  padding-top: 5px;
 }
 
 .navbar-links ul {
@@ -109,11 +117,11 @@ nav {
 
 .navbar-links li {
   margin: 0 10px;
-  font-size: 25px;;
+  font-size: 25px;
 }
 
 .navbar-links a {
-  color: #fff;
+  color: inherit;
   text-decoration: none;
 }
 
