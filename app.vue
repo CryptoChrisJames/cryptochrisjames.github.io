@@ -1,18 +1,16 @@
 <template>
   <div class="container">
-    <div class="header">
-      <span @click="goHome()">
-        <div class="img-container">
-          <img src="./assets/images/header.jpg" alt="" class="header-img">
-        </div>
-      </span>
-      <nav class="navbar">
+    <nav>
+      <div class="navbar-logo">
+        <a @click="goHome()"><img src="./assets/images/logo.png" alt="your logo"></a>
+      </div>
+      <div class="navbar-links">
         <ul>
           <li><a href="https://cryptochrisjames.com">About</a></li>
-          <li><a to="mailto:social@cryptochrisjames.com">Contact</a></li>
+          <li><a href="mailto:social@cryptochrisjames.com?subject=Reaching Out">Contact</a></li>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </nav>
     <div class="content">
       <NuxtPage/>
     </div>
@@ -28,6 +26,7 @@ const goHome = async () => {
 
 <style lang="scss">
 @import './assets/styles/colors';
+@import './assets/styles/variables';
 
 body, html{
   background-color: $black;
@@ -49,68 +48,40 @@ body, html{
   flex: 1;
 }
 
-.img-container {
+nav {
+  background-color: $black;
   height: 77px;
-  overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  
+    @include phone {
+      box-shadow: 0 3px 13px $blue,
+        0 2px 4px #467baaa8;
+
+    }
 }
 
-.header-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  object-position: center;
+.navbar-logo img {
+  height: 50px; /* set the height of the logo */
 }
 
-nav {
-  height: 50px; /* set the height of the navigation bar */
-}
-
-nav ul {
-  list-style: none; /* remove the bullet points from the list items */
+.navbar-links ul {
+  list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* use Flexbox layout to align the list items horizontally */
+  display: flex;
 }
 
-nav li {
-  flex: 1; /* make the list items take up equal width */
+.navbar-links li {
+  margin: 0 10px;
+  font-size: 25px;;
 }
 
-nav a {
-  display: block; /* make the links fill the entire width of the list item */
-  color: #fff; /* set the text color of the links */
-  text-decoration: none; /* remove the underline from the links */
-  text-align: center; /* center the text inside the links */
-  line-height: 50px; /* set the line height equal to the height of the navigation bar */
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
 }
 
-nav {
-  height: 50px; /* set the height of the navigation bar */
-}
-
-nav ul {
-  list-style: none; /* remove the bullet points from the list items */
-  margin: 0;
-  padding: 0;
-  display: flex; /* use Flexbox layout to align the list items horizontally */
-}
-
-nav li {
-  flex: 1; /* make the list items take up equal width */
-}
-
-nav a {
-  display: block;
-  font-size: 25px; /* make the links fill the entire width of the list item */
-  color: $white; /* set the text color of the links */
-  text-decoration: none; /* remove the underline from the links */
-  text-align: center; /* center the text inside the links */
-  line-height: 50px; /* set the line height equal to the height of the navigation bar */
-  border-left: solid 1px $white;  
-  border-right: solid 1px $white;
-  margin: 10px 40px;
-}
 </style>
