@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nav>
+    <nav :class="[{'.navbar-hidden': !showNav}]">
       <div class="navbar-logo">
         <a @click="goHome()"><img src="./assets/images/logo.png" alt="your logo"></a>
       </div>
@@ -21,6 +21,30 @@
 const goHome = async () => {
   await navigateTo('/');
 }
+
+var lastScrollPosition = 0;
+var showNav = true;
+
+const onScroll = () => {
+  var currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  if(currentScrollPosition < 0) {
+      return;
+  }
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) {
+      return;
+  }
+  showNav = currentScrollPosition < lastScrollPosition;
+  lastScrollPosition = currentScrollPosition;
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll);
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll);
+
+})
 </script>
 
 
@@ -39,38 +63,47 @@ body, html{
 .container {
   max-width: 777px;
   margin: 0 auto;
-  height: 100vh;
-  display: flex; /* use Flexbox layout */
+  display: flex;
   flex-direction: column;
 }
 
 .content {
   flex: 1;
+  margin-top: 80px;
 }
 
 nav {
   background-color: $black;
-  height: 77px;
+  position: fixed;
+  z-index: 999;
+  max-width: 777px;
+  width: 100%;
   display: flex;
+  height: 55px;
+  -webkit-box-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
   align-items: center;
-  padding: 0 20px;
+  transform: translate3d(0, 0, 0);
+  transition: 0.3s all ease-out;
   
     @include phone {
       box-shadow: 0 3px 13px $blue,
         0 2px 4px #467baaa8;
-
+      background-color: $darkBlack;
+      opacity: .92;
     }
 }
 
 .navbar-logo img {
-  height: 50px; /* set the height of the logo */
+  height: 50px;
+  padding: 0 7px
 }
 
 .navbar-links ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 7px;
   display: flex;
 }
 
@@ -84,4 +117,8 @@ nav {
   text-decoration: none;
 }
 
+.navbar-hidden {
+  box-shadow: none;
+  transform: translate3d(0, -100%, 0);
+}
 </style>
