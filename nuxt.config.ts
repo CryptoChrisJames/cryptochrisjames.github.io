@@ -11,13 +11,4 @@ export default {
         }
     },
     css: ["@/assets/styles/_variables.scss", "@/assets/styles/_colors.scss"],
-    // vite: {
-    //     css:{
-    //         preprocessorOptions: {
-    //             sass: {
-    //                 additionalData: '@import "@/assets/styles/_variables.sass";',
-    //             },
-    //         }
-    //     }
-    // },
 }

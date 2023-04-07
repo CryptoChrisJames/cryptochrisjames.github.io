@@ -8,8 +8,8 @@
       </span>
       <nav class="navbar">
         <ul>
-          <li><NuxtLink to="/about">About</NuxtLink></li>
-          <li><NuxtLink to="/contact">Contact</NuxtLink></li>
+          <li><a href="https://cryptochrisjames.com">About</a></li>
+          <li><a to="mailto:social@cryptochrisjames.com">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -50,7 +50,7 @@ body, html{
 }
 
 .img-container {
-  height: 50px;
+  height: 77px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -62,5 +62,55 @@ body, html{
   height: auto;
   object-fit: cover;
   object-position: center;
+}
+
+nav {
+  height: 50px; /* set the height of the navigation bar */
+}
+
+nav ul {
+  list-style: none; /* remove the bullet points from the list items */
+  margin: 0;
+  padding: 0;
+  display: flex; /* use Flexbox layout to align the list items horizontally */
+}
+
+nav li {
+  flex: 1; /* make the list items take up equal width */
+}
+
+nav a {
+  display: block; /* make the links fill the entire width of the list item */
+  color: #fff; /* set the text color of the links */
+  text-decoration: none; /* remove the underline from the links */
+  text-align: center; /* center the text inside the links */
+  line-height: 50px; /* set the line height equal to the height of the navigation bar */
+}
+
+nav {
+  height: 50px; /* set the height of the navigation bar */
+}
+
+nav ul {
+  list-style: none; /* remove the bullet points from the list items */
+  margin: 0;
+  padding: 0;
+  display: flex; /* use Flexbox layout to align the list items horizontally */
+}
+
+nav li {
+  flex: 1; /* make the list items take up equal width */
+}
+
+nav a {
+  display: block;
+  font-size: 25px; /* make the links fill the entire width of the list item */
+  color: $white; /* set the text color of the links */
+  text-decoration: none; /* remove the underline from the links */
+  text-align: center; /* center the text inside the links */
+  line-height: 50px; /* set the line height equal to the height of the navigation bar */
+  border-left: solid 1px $white;  
+  border-right: solid 1px $white;
+  margin: 10px 40px;
 }
 </style>
