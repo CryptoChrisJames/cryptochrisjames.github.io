@@ -10,5 +10,13 @@ export default {
             strict: true, 
         }
     },
-    css: ["@/assets/styles/_variables.scss", "@/assets/styles/_colors.scss"],
+    css: [
+        "@/assets/styles/_variables.scss", 
+        "@/assets/styles/_colors.scss",
+        "vuetify/lib/styles/main.sass",
+        "@mdi/font/css/materialdesignicons.min.css",
+    ],
+    build: {
+        transpile: ['vuetify'],
+    },
 }
