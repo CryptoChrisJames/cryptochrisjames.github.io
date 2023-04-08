@@ -126,7 +126,9 @@ body, html{
 }
 
 .navbar-hidden {
-  box-shadow: none;
+  @include phone {
+    box-shadow: 0 1px 13px $grey;
+  }
   transform: translate3d(0, -100%, 0);
 }
 </style>
