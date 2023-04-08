@@ -1,3 +1,7 @@
+---
+title: 'Now Yall Test2'
+date: '04/08/2023'
+---
 # Test 2 Page
 
 **This is CRAZY YALL**

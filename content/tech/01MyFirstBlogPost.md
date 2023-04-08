@@ -1,8 +1,9 @@
-# Test 2 Page
-
-**This is CRAZY YALL**
-
-<img src="https://i.imgur.com/AhjUITf.gif">
+---
+title: 'Now Yall Know This Just a Test'
+date: '04/07/2023'
+---
+*we getting somewhere*
+<img src="https://media.tenor.com/3b1wNsygwqUAAAAC/troy-community.gif">
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum nibh tellus molestie nunc non blandit massa. Pellentesque elit ullamcorper dignissim cras. Ultricies mi eget mauris pharetra. At risus viverra adipiscing at in tellus integer. Quis eleifend quam adipiscing vitae proin. Non arcu risus quis varius quam. Tortor posuere ac ut consequat semper viverra nam libero justo. Sit amet justo donec enim diam vulputate. Turpis nunc eget lorem dolor. Est ultricies integer quis auctor. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Imperdiet nulla malesuada pellentesque elit eget gravida cum. Urna nec tincidunt praesent semper.
 

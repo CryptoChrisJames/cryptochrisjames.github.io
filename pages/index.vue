@@ -6,9 +6,11 @@
             and everything else in between. 
         </h3>
     </div>
-    <div class="category-picker">
-        <div class="category" v-for="category in categories" :key="category">
-            <button @click="(getBlogs(category))">{{ category }}</button>
+    <div class="picker-container">
+        <div class="category-picker">
+            <div class="category" v-for="category in categories" :key="category">
+                <button class="selector" :class="[{'selected': selected == category}]" @click="(getBlogs(category))">{{ category }}</button>
+            </div>
         </div>
     </div>
     <span class="blog-list">
@@ -25,14 +27,16 @@ import { ref } from 'vue';
 const router = useRouter();
 const categories = ['Tech', 'Entertainment', 'Life'];
 const currentBlogs = ref([]);
+const selected = ref('Tech');
 const getBlogs = async (category) => {
+    selected.value = category;
     var categories = {
         'Tech': '/tech',
         'Entertainment': '/ent',
         'Life': '/life'
     };
     var currentCatgeory = category == null ? 'Tech' : categories[category];
-    const { data } = await useAsyncData('home', () => queryContent(`${currentCatgeory}`).find());
+    const { data } = await useAsyncData('home', () => queryContent(`${currentCatgeory}`).sort({ title: -1 }).find());
     currentBlogs.value = data.value;
 };
 
@@ -44,3 +48,44 @@ const goToPost = (path) => {
 };
 </script>
 
+<style lang="scss" scoped>
+@import './assets/styles/colors';
+@import './assets/styles/variables';
+
+.picker-container {
+    margin: 0 auto;
+    max-width: 444px;
+}
+.category-picker {
+    width: 100%;
+    display: flex;
+    height: 48px;
+    -webkit-box-pack: justify;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+}
+
+.category {
+    flex: 1;
+    margin: 0 auto;
+}
+
+.selector {
+    width: 100%;
+    height: 44px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid $white;
+    background-color: transparent;
+    color: $white;
+}
+
+.selected {
+    color: $white;
+    border: none;
+    border-bottom: 2px solid $yellow;
+    border-top: 2px solid $yellow;
+}
+</style>

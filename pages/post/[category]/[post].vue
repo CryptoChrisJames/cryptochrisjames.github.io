@@ -1,8 +1,13 @@
 <template>
     <div v-if="currentBlog" class="article">
-        <ContentRenderer>
-            <ContentRendererMarkdown  :value="currentBlog" />
-        </ContentRenderer>
+        <div>
+            
+        </div>
+        <div class="content-body">
+            <ContentRenderer>
+                <ContentRendererMarkdown  :value="currentBlog" />
+            </ContentRenderer>
+        </div>
         <div class="article-nav">
             <div v-if="previousBlog" @click="goToPost(previousBlog._path)" class="article-nav-previous">
                 <span class="article-nav-previous-text">
@@ -51,3 +56,18 @@ const goToPost = async (path) => {
     await navigateTo(`/post${path}`);
 };
 </script>
+
+<style lang="scss" scoped>
+@import './assets/styles/colors';
+@import './assets/styles/variables';
+
+.article {
+    margin: 0 auto;
+    max-width: 777px;
+    padding: 0 25px;
+}
+
+img {
+    max-width: 80%;
+}
+</style>
