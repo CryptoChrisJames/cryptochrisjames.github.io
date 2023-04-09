@@ -31,13 +31,26 @@
 
 <script setup>
 const { category, post } = useRoute().params;
+const router = useRouter();
 const path = `/${category}/${post}`
 const { data } = await useAsyncData('post', 
-    () => queryContent(`/${category}`).where({ _path: path }).findOne());
-const [ prev, next ] = await queryContent().findSurround(path);
-var currentBlog = data.value; 
-var previousBlog = prev;
-var nextBlog = next;
+    () => queryContent(`/${category}`).find());
+
+var currentBlog; 
+var previousBlog;
+var nextBlog;
+for (var i = 0; i < data._rawValue.length; i++) {
+    if (data._rawValue[i]._path == path) {
+        currentBlog = data._rawValue[i];
+        if (i > 0) {
+            previousBlog = data._rawValue[i - 1];
+        }
+        if (i < data._rawValue.length - 1) {
+            nextBlog = data._rawValue[i + 1];
+        }
+        break;
+    }
+}
 
 const goToPost = async (path) => {
     await navigateTo(`/post${path}`);

@@ -36,12 +36,12 @@
 import { ref } from 'vue';
 
 const router = useRouter();
-const categories = ['Tech', 'Entertainment', 'Life']
+const categories = ['Tech', 'Entertainment', 'Life'];
 const routes = {
     'Tech': '/tech',
     'Entertainment': '/ent',
     'Life': '/life'
-}
+};
 const selected = ref('Tech');
 const select = (category) => {
     selected.value = category;
@@ -50,7 +50,7 @@ const getQuery = (name) => {
     return {
         path: routes[name], 
         sort: [{ title: -1 }]
-    }
+    };
 };
 
 
