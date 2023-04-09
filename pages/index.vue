@@ -49,7 +49,7 @@ const select = (category) => {
 const getQuery = (name) => {
     return {
         path: routes[name], 
-        sort: [{ title: -1 }]
+        sort: [{ date: -1 }]
     };
 };
 

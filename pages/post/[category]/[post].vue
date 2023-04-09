@@ -31,7 +31,6 @@
 
 <script setup>
 const { category, post } = useRoute().params;
-const router = useRouter();
 const path = `/${category}/${post}`
 const { data } = await useAsyncData('post', 
     () => queryContent(`/${category}`).find());
@@ -39,14 +38,14 @@ const { data } = await useAsyncData('post',
 var currentBlog; 
 var previousBlog;
 var nextBlog;
-for (var i = 0; i < data._rawValue.length; i++) {
-    if (data._rawValue[i]._path == path) {
-        currentBlog = data._rawValue[i];
+for (var i = 0; i < data.value.length; i++) {
+    if (data.value[i]._path == path) {
+        currentBlog = data.value[i];
         if (i > 0) {
-            previousBlog = data._rawValue[i - 1];
+            previousBlog = data.value[i - 1];
         }
-        if (i < data._rawValue.length - 1) {
-            nextBlog = data._rawValue[i + 1];
+        if (i < data.value.length - 1) {
+            nextBlog = data.value[i + 1];
         }
         break;
     }
