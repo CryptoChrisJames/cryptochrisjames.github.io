@@ -19,15 +19,13 @@
             </div>
         </div>
     </div>
-    <span v-for="cat in categories" :key="cat">
-        <span v-show="selected == cat">
-            <ContentList :query="getQuery(cat)" v-slot="{ list }">
-                <div class="content-list" v-for="blog in list" :key="blog">
-                    <div @click="goToPost(blog._path)">
-                        <h1>{{ blog.title }}</h1>
-                    </div>
+    <span v-for="blogs in blogsList" :key="blogs">
+        <span v-if="blogs.name == selected">
+            <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
+                <div @click="goToPost(blog._path)">
+                    <h1>{{ blog.title }}</h1>
                 </div>
-            </ContentList>
+            </div>
         </span>
     </span>
 </template>
@@ -42,17 +40,25 @@ const routes = {
     'Entertainment': '/ent',
     'Life': '/life'
 };
+const blogsList = [];
 const selected = ref('Tech');
 const select = (category) => {
     selected.value = category;
 };
-const getQuery = (name) => {
-    return {
-        path: routes[name], 
-        sort: [{ date: -1 }]
-    };
-};
 
+for(var i = 0; i < categories.length; i++) {
+    const category = categories[i];
+    const { data } = await useAsyncData(category, 
+        () => queryContent(`${routes[category]}`)
+            .only(['title', '_path'])
+            .sort({ date: -1 })
+            .find());
+    var blog = {
+        name: category,
+        blogs: data._rawValue
+    }
+    blogsList.push(blog);
+};
 
 const goToPost = (path) => {
     router.push(`post${path}`);
