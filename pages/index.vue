@@ -9,39 +9,54 @@
     <div class="picker-container">
         <div class="category-picker">
             <div class="category" v-for="category in categories" :key="category">
-                <button class="selector" :class="[{'selected': selected == category}]" @click="(getBlogs(category))">{{ category }}</button>
+                <!-- <button class="selector" :class="[{'selected': selected == category}]" @click="(getBlogs(category))">{{ category }}</button> -->
             </div>
         </div>
     </div>
-    <span class="blog-list">
+    <!-- <span class="blog-list">
         <div class="content-list" v-for="post in currentBlogs" :key="post.id">
             <div @click="goToPost(post._path)">
                 <h1>{{ post.title }}</h1>
             </div>
         </div>
-    </span>
+    </span> -->
+    <ContentList path="/tech" v-slot="{ blogs }">
+        <div class="content-list" v-for="blog in blogs" :key="blog">
+            <div @click="goToPost(blog._path)">
+                <h1>{{ blog.title }}</h1>
+            </div>
+        </div>
+    </ContentList>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 const router = useRouter();
 const categories = ['Tech', 'Entertainment', 'Life'];
-const currentBlogs = ref([]);
 const selected = ref('Tech');
-const getBlogs = async (category) => {
-    selected.value = category;
+const route = computed((selected) => {
+    console.log('here')
     var categories = {
         'Tech': '/tech',
         'Entertainment': '/ent',
         'Life': '/life'
     };
-    var currentCatgeory = category == null ? 'Tech' : categories[category];
-    const { data } = await useAsyncData('home', () => queryContent(`${currentCatgeory}`).sort({ title: -1 }).find());
-    currentBlogs.value = data.value;
-};
+    return categories[selected];
+})
+// const getBlogs = async (category) => {
+//     selected.value = category;
+//     var categories = {
+//         'Tech': '/tech',
+//         'Entertainment': '/ent',
+//         'Life': '/life'
+//     };
+//     var currentCatgeory = category == null ? 'Tech' : categories[category];
+//     const { data } = await useAsyncData('home', () => queryContent(`${currentCatgeory}`).sort({ title: -1 }).find());
+//     currentBlogs.value = data.value;
+// };
 
-const { data } = await useAsyncData('home', () => queryContent('/tech').find());
-currentBlogs.value = data.value;
+// const { data } = await useAsyncData('home', () => queryContent('/tech').find());
+// currentBlogs.value = data.value;
 
 const goToPost = (path) => {
     router.push(`post${path}`);
