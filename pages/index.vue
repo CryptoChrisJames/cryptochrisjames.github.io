@@ -9,19 +9,18 @@
     <div class="picker-container">
         <div class="category-picker">
             <div class="category" v-for="category in categories" :key="category">
-                <!-- <button class="selector" :class="[{'selected': selected == category}]" @click="(getBlogs(category))">{{ category }}</button> -->
+                <button 
+                    class="selector" 
+                    :class="[{'selected': selected == category}]" 
+                    @click="(select(category))"
+                >
+                    {{ category }}
+                </button>
             </div>
         </div>
     </div>
-    <!-- <span class="blog-list">
-        <div class="content-list" v-for="post in currentBlogs" :key="post.id">
-            <div @click="goToPost(post._path)">
-                <h1>{{ post.title }}</h1>
-            </div>
-        </div>
-    </span> -->
-    <ContentList path="/tech" v-slot="{ blogs }">
-        <div class="content-list" v-for="blog in blogs" :key="blog">
+    <ContentList :query="query" v-slot="{ list }">
+        <div class="content-list" v-for="blog in list" :key="blog">
             <div @click="goToPost(blog._path)">
                 <h1>{{ blog.title }}</h1>
             </div>
@@ -31,32 +30,23 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+
 const router = useRouter();
 const categories = ['Tech', 'Entertainment', 'Life'];
 const selected = ref('Tech');
-const route = computed((selected) => {
-    console.log('here')
-    var categories = {
+const select = (category) => {
+    selected.value = category;
+};
+const route = computed(() => {
+    var catObj = {
         'Tech': '/tech',
         'Entertainment': '/ent',
         'Life': '/life'
     };
-    return categories[selected];
-})
-// const getBlogs = async (category) => {
-//     selected.value = category;
-//     var categories = {
-//         'Tech': '/tech',
-//         'Entertainment': '/ent',
-//         'Life': '/life'
-//     };
-//     var currentCatgeory = category == null ? 'Tech' : categories[category];
-//     const { data } = await useAsyncData('home', () => queryContent(`${currentCatgeory}`).sort({ title: -1 }).find());
-//     currentBlogs.value = data.value;
-// };
+    return catObj[selected.value];
+});
+const query = { path: route, sort: [{ title: -1 }]};
 
-// const { data } = await useAsyncData('home', () => queryContent('/tech').find());
-// currentBlogs.value = data.value;
 
 const goToPost = (path) => {
     router.push(`post${path}`);
@@ -92,7 +82,8 @@ const goToPost = (path) => {
     height: 44px;
     font-size: 20px;
     border: none;
-    border-bottom: 2px solid $white;
+    border-bottom: 3px solid $white;
+    border-top: 3px solid $white;
     background-color: transparent;
     color: $white;
 }
@@ -100,7 +91,7 @@ const goToPost = (path) => {
 .selected {
     color: $white;
     border: none;
-    border-bottom: 2px solid $yellow;
-    border-top: 2px solid $yellow;
+    border-bottom: 3px solid $blue;
+    border-top: 3px solid $blue;
 }
 </style>
