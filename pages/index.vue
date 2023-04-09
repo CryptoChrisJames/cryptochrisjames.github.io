@@ -19,33 +19,39 @@
             </div>
         </div>
     </div>
-    <ContentList :query="query" v-slot="{ list }">
-        <div class="content-list" v-for="blog in list" :key="blog">
-            <div @click="goToPost(blog._path)">
-                <h1>{{ blog.title }}</h1>
-            </div>
-        </div>
-    </ContentList>
+    <span v-for="cat in categories" :key="cat">
+        <span v-show="selected == cat">
+            <ContentList :query="getQuery(cat)" v-slot="{ list }">
+                <div class="content-list" v-for="blog in list" :key="blog">
+                    <div @click="goToPost(blog._path)">
+                        <h1>{{ blog.title }}</h1>
+                    </div>
+                </div>
+            </ContentList>
+        </span>
+    </span>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 const router = useRouter();
-const categories = ['Tech', 'Entertainment', 'Life'];
+const categories = ['Tech', 'Entertainment', 'Life']
+const routes = {
+    'Tech': '/tech',
+    'Entertainment': '/ent',
+    'Life': '/life'
+}
 const selected = ref('Tech');
 const select = (category) => {
     selected.value = category;
 };
-const route = computed(() => {
-    var catObj = {
-        'Tech': '/tech',
-        'Entertainment': '/ent',
-        'Life': '/life'
-    };
-    return catObj[selected.value];
-});
-const query = { path: route, sort: [{ title: -1 }]};
+const getQuery = (name) => {
+    return {
+        path: routes[name], 
+        sort: [{ title: -1 }]
+    }
+};
 
 
 const goToPost = (path) => {
