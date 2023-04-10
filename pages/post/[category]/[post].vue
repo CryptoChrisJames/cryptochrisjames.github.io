@@ -9,20 +9,20 @@
             </ContentRenderer>
         </div>
         <div class="article-nav">
-            <div v-if="previousBlog" @click="goToPost(previousBlog._path)" class="article-nav-previous">
+            <div v-if="previousBlog" @click="goToPost(previousBlog._path)" class="prev">
                 <span class="article-nav-previous-text">
                     Previous
                 </span>
                 <span class="article-nav-previous-title">
-                    {{ previousBlog._path }}
+                    {{ previousBlog.title }}
                 </span>
             </div>
-            <div v-if="nextBlog" @click="goToPost(nextBlog._path)" class="article-nav-next">
+            <div v-if="nextBlog" @click="goToPost(nextBlog._path)" class="next">
                 <span class="article-nav-next-text">
                     Next
                 </span>
                 <span class="article-nav-next-title">
-                    {{ nextBlog._path }}
+                    {{ nextBlog.title }}
                 </span>
             </div>
         </div>
@@ -73,5 +73,40 @@ const goToPost = async (path) => {
     img {
         margin: 0 auto;
     }
+}
+
+.article-nav{
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 0;
+}
+
+.prev, .next {
+    background: 0 0;
+    margin: 0.5rem 1rem;
+    border-bottom: none;
+    transition: all .2s ease;
+    padding: 1.5rem;
+    border-radius: 0.35rem;
+}
+
+.prev span, .next span {
+    font-weight: 400;
+    display: block;
+    font-size: 15px;
+}
+
+.prev {
+    order: 1;
+    text-align: right;
+    @include phone {
+        text-align: left;
+    }
+}
+
+.next {
+    order: 2;
 }
 </style>

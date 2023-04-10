@@ -21,18 +21,25 @@
     </div>
     <span v-for="blogs in blogsList" :key="blogs">
         <span v-if="blogs.name == selected">
-            <span v-if="blogs.length > 0">
+            <span v-if="hasBlogs(blogs)">
                 <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
-                    <div @click="goToPost(blog._path)">
-                        <h1>{{ blog.title }}</h1>
+                    <div class="article-container" @click="goToPost(blog._path)">
+                        <div class="image-container">
+                            <img :src="blog.img" alt="your image description">
+                        </div>
+                        <div class="text-container">
+                            <h2>{{ blog.title }}</h2>
+                            <p>{{ blog.description }}</p>
+                            <p>{{ blog.date }}</p>
+                        </div>
                     </div>
                 </div>
             </span>            
             <span v-else>
-                <h1>
+                <h3>
                     There's currently no articles in this category. 
                     Please check again later.
-                </h1>
+                </h3>
             </span>           
         </span>
     </span>
@@ -58,8 +65,8 @@ for(var i = 0; i < categories.length; i++) {
     const category = categories[i];
     const { data } = await useAsyncData(category, 
         () => queryContent(`${routes[category]}`)
-            .only(['title', '_path'])
-            .sort({ title: -1 })
+            .only(['title', '_path', 'description', 'img', 'date'])
+            .sort({ date: -1 })
             .find());
     var blog = {
         name: category,
@@ -67,6 +74,8 @@ for(var i = 0; i < categories.length; i++) {
     }
     blogsList.push(blog);
 };
+
+const hasBlogs = (blogs) =>  { return blogs.blogs.length > 0 };
 
 const goToPost = (path) => {
     router.push(`post${path}`);
@@ -102,16 +111,44 @@ const goToPost = (path) => {
     height: 44px;
     font-size: 20px;
     border: none;
-    border-bottom: 3px solid $white;
-    border-top: 3px solid $white;
+    border-bottom: 2px solid $white;
+    border-top: 2px solid $white;
     background-color: transparent;
     color: $white;
 }
 
 .selected {
-    color: $white;
+    color: $yellow;
     border: none;
-    border-bottom: 3px solid $blue;
-    border-top: 3px solid $blue;
+    border-bottom: 2px solid $blue;
+    border-top: 2px solid $blue;
+}
+
+.article-container {
+    padding: 25px;
+    display: flex;
+}
+
+.image-container {
+    display: flex;
+    flex-basis: 50%;
+    align-items: center; 
+    justify-content: center;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.text-container {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.text-container h2 {
+    color: $yellow;
+    margin-top: 0; 
 }
 </style>
