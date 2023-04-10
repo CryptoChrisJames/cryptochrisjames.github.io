@@ -124,7 +124,7 @@ body, html{
 .navbar-links a {
   color: inherit;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 200;
 }
 
 .navbar-hidden {

@@ -29,13 +29,13 @@
                         </div>
                         <div class="text-container">
                             <h2>{{ blog.title }}</h2>
-                            <p>{{ blog.description }}</p>
-                            <p>{{ blog.date }}</p>
+                            <p class="desc">{{ blog.description }}</p>
+                            <p class="date">{{ blog.date }}</p>
                         </div>
                     </div>
                 </div>
             </span>            
-            <span v-else>
+            <span style="text-align: center;" v-else>
                 <h3>
                     There's currently no articles in this category. 
                     Please check again later.
@@ -86,6 +86,13 @@ const goToPost = (path) => {
 @import './assets/styles/colors';
 @import './assets/styles/variables';
 
+.welcome {
+    font-size: 15px;
+    font-weight: 200;
+    margin: 15px auto;
+    max-width: 444px;
+    padding: 7px;
+}
 .picker-container {
     margin: 0 auto;
     max-width: 444px;
@@ -138,8 +145,12 @@ const goToPost = (path) => {
 
 .image-container img {
     display: block;
-    width: 100%;
+    width: 50%;
     height: auto;
+
+    @include phone {
+        width: 100%;
+    }
 }
 
 .text-container {
@@ -148,7 +159,26 @@ const goToPost = (path) => {
 }
 
 .text-container h2 {
+    font-weight: 200;
     color: $yellow;
-    margin-top: 0; 
+    margin-top: 10px;
+
+    @include phone {
+        margin: 0;
+    }
+}
+
+.desc {
+    font-size: 13px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date {
+    font-size: 13px;
+    font-weight: 200;
+    margin-bottom: 10px;
 }
 </style>
