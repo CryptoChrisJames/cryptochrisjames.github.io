@@ -1,8 +1,8 @@
 <template>
     <div v-if="currentBlog" class="article">
-        <div>
-            
-        </div>
+        <h2>{{ currentBlog.title }}</h2>
+        <p> By Christopher Smith | {{ currentBlog.date }}</p>
+        <p>{{ currentBlog.description }}</p>
         <div class="content-body">
             <ContentRenderer>
                 <ContentRendererMarkdown  :value="currentBlog" />
@@ -69,10 +69,12 @@ const goToPost = async (path) => {
     align-items: center;
 }
 
+.article h1, h2, h3, h4, h5, h6 {
+    color: $yellow;
+}
+
 .content-body {
-    img {
-        margin: 0 auto;
-    }
+    font-size: 15px;
 }
 
 .article-nav {
