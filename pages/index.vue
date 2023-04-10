@@ -51,7 +51,7 @@ for(var i = 0; i < categories.length; i++) {
     const { data } = await useAsyncData(category, 
         () => queryContent(`${routes[category]}`)
             .only(['title', '_path'])
-            .sort({ date: -1 })
+            .sort({ title: -1 })
             .find());
     var blog = {
         name: category,
