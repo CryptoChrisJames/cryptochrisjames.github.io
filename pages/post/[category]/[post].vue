@@ -75,12 +75,17 @@ const goToPost = async (path) => {
     }
 }
 
-.article-nav{
-    flex-direction: column;
+.article-nav {
+    display: flex;
+    flex-direction: row;
     align-items: stretch;
     margin-left: -1rem;
     margin-right: -1rem;
     padding: 0;
+
+    @include phone {
+        flex-direction: column;
+    }
 }
 
 .prev, .next {
@@ -88,14 +93,21 @@ const goToPost = async (path) => {
     margin: 0.5rem 1rem;
     border-bottom: none;
     transition: all .2s ease;
-    padding: 1.5rem;
+    padding: 1.5rem .1rem;
     border-radius: 0.35rem;
+    flex: 0 0 calc(50% - 2rem);
+    background-color: #2c2e42;
+    display: flex;
+    flex-direction: column;
+    @include phone {
+        margin: .5rem 0;
+    }
 }
 
 .prev span, .next span {
+    padding: 0 15px;
     font-weight: 400;
-    display: block;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .prev {
@@ -108,5 +120,9 @@ const goToPost = async (path) => {
 
 .next {
     order: 2;
+    margin-left: auto;
+    @include phone {
+        margin-left: 0;
+    }
 }
 </style>

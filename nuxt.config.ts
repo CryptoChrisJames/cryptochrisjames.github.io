@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default {
+    buildModules: [
+        '@nuxtjs/google-fonts'
+    ],
     modules: [
         '@nuxt/content'
     ],
@@ -14,4 +17,9 @@ export default {
         "@/assets/styles/_variables.scss", 
         "@/assets/styles/_colors.scss",
     ],
+    googleFonts: {
+        families: {
+            Nunito: [200, 300, 400, 500]
+        }
+    }
 }

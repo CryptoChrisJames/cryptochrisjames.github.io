@@ -62,6 +62,7 @@ body, html{
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: 'Nunito', sans-serif;
 }
 
 .container {
@@ -117,12 +118,13 @@ body, html{
 
 .navbar-links li {
   margin: 0 10px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .navbar-links a {
   color: inherit;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .navbar-hidden {
