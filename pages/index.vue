@@ -21,11 +21,19 @@
     </div>
     <span v-for="blogs in blogsList" :key="blogs">
         <span v-if="blogs.name == selected">
-            <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
-                <div @click="goToPost(blog._path)">
-                    <h1>{{ blog.title }}</h1>
+            <span v-if="blogs.length > 0">
+                <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
+                    <div @click="goToPost(blog._path)">
+                        <h1>{{ blog.title }}</h1>
+                    </div>
                 </div>
-            </div>
+            </span>            
+            <span v-else>
+                <h1>
+                    There's currently no articles in this category. 
+                    Please check again later.
+                </h1>
+            </span>           
         </span>
     </span>
 </template>
