@@ -17,6 +17,10 @@
       <NuxtPage/>
     </div>
   </div>
+  <div class="bottom-footer">
+    <img src="./assets/images/ccjicon.png" alt="CCJ Logo" class="sig">
+    <p class="copyright">&copy; CryptoChrisJames 2023</p>
+  </div>
 </template>
 
 <script setup>
@@ -132,5 +136,25 @@ body, html{
     box-shadow: 0 1px 13px $grey;
   }
   transform: translate3d(0, -100%, 0);
+}
+
+.bottom-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sig {
+  height: 40px;
+  padding: 0 7px;
+  padding-top: 5px;
+}
+
+.copyright {
+  font-size: 12px;
+  margin: 5px;
+  padding-bottom: 5px;
+  color: #4c4c51;
 }
 </style>
