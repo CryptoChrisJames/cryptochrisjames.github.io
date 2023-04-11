@@ -35,7 +35,7 @@
 const { category, post } = useRoute().params;
 const path = `/${category}/${post}`
 const { data } = await useAsyncData('post', 
-    () => queryContent(`/${category}`).find());
+    () => queryContent(`/${category}`).sort({ date: -1 }).find());
 
 var currentBlog; 
 var previousBlog;
