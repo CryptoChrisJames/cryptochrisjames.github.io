@@ -69,6 +69,10 @@ const getUrl = () => {
     return currentBlog ? `blog.cryptochrisjames.com${currentBlog._path}` : 'blog.cryptochrisjames.com';
 }
 
+const getImage = () => {
+    return currentBlog ? currentBlog.image : '../../../assets/images/ccjlogoseo.jpg';    
+}
+
 useHead({
     title: getTitle(),
     meta: [
@@ -77,11 +81,11 @@ useHead({
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: getUrl() },
         { property: 'og:locale', content: 'en_US' },
-        { property: 'og:image', content: '../../../assets/images/ccjlogoseo.jpg' },
+        { property: 'og:image', content: getImage() },
         { property: 'twitter:card', content: 'summary_large_image' },
         { property: 'twitter:title', content: getTitle() },
         { property: 'twitter:description', content: getDescription() },
-        { property: 'twitter:image', content: '../../../assets/images/ccjlogoseo.jpg' },
+        { property: 'twitter:image', content: getImage() },
         { property: 'twitter:creator', content: '@NamesChrisJames' },
         { property: 'twitter:site', content: getUrl() },
     ],
