@@ -25,7 +25,7 @@
                 <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
                     <div class="article-container" @click="goToPost(blog._path)">
                         <div class="image-container">
-                            <img :src="blog.img" alt="your image description">
+                            <img :src="blog.img" :alt="blog.title">
                         </div>
                         <div class="text-container">
                             <h2>{{ blog.title }}</h2>
