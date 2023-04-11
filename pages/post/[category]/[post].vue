@@ -70,7 +70,7 @@ const getUrl = () => {
 }
 
 const getImage = () => {
-    return currentBlog ? currentBlog.image : '../../../assets/images/ccjlogoseo.jpg';    
+    return currentBlog ? currentBlog.image : 'https://blog.cryptochrisjames.com/images/ccjlogoseo.jpg';    
 }
 
 useHead({

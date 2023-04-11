@@ -4,7 +4,7 @@
       class="nav-wrapper" 
       :class="[{'navbar-hidden': !showNav}]">
       <div class="navbar-logo">
-        <a @click="goHome()"><img src="./assets/images/logo.png" alt="your logo"></a>
+        <a @click="goHome()"><img src="./public/images/logo.png" alt="your logo"></a>
       </div>
       <div class="navbar-links">
         <ul>
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="bottom-footer">
-    <img src="./assets/images/ccjicon.png" alt="CCJ Logo" class="sig">
+    <img src="./public/images/ccjicon.png" alt="CCJ Logo" class="sig">
     <p class="copyright">&copy; CryptoChrisJames 2023</p>
   </div>
 </template>
