@@ -59,19 +59,16 @@ const goToPost = async (path) => {
 
 const getTitle = () => {
     return currentBlog ? currentBlog.title : 'CryptoChrisJames Blog';
-}
+};
 
 const getDescription = () => {
     return currentBlog ? currentBlog.description : 'Personal blog of Christopher James Smith';
-}
+};
 
 const getUrl = () => {
     return currentBlog ? `blog.cryptochrisjames.com${currentBlog._path}` : 'blog.cryptochrisjames.com';
-}
+};
 
-const getImage = () => {
-    return currentBlog ? currentBlog.image : 'https://blog.cryptochrisjames.com/images/ccjlogoseo.jpg';    
-}
 
 useHead({
     title: getTitle(),
@@ -81,11 +78,11 @@ useHead({
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: getUrl() },
         { property: 'og:locale', content: 'en_US' },
-        { property: 'og:image', content: getImage() },
+        { property: 'og:image', content: 'https://blog.cryptochrisjames.com/images/ccjlogoseo.jpg' },
         { property: 'twitter:card', content: 'summary_large_image' },
         { property: 'twitter:title', content: getTitle() },
         { property: 'twitter:description', content: getDescription() },
-        { property: 'twitter:image', content: getImage() },
+        { property: 'twitter:image', content: 'https://blog.cryptochrisjames.com/images/ccjlogoseo.jpg' },
         { property: 'twitter:creator', content: '@NamesChrisJames' },
         { property: 'twitter:site', content: getUrl() },
     ],
