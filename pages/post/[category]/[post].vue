@@ -56,6 +56,36 @@ for (var i = 0; i < data._rawValue.length; i++) {
 const goToPost = async (path) => {
     await navigateTo(`/post${path}`);
 };
+
+const getTitle = () => {
+    return currentBlog ? currentBlog.title : 'CryptoChrisJames Blog';
+}
+
+const getDescription = () => {
+    return currentBlog ? currentBlog.description : 'Personal blog of Christopher James Smith';
+}
+
+const getUrl = () => {
+    return currentBlog ? `blog.cryptochrisjames.com${currentBlog._path}` : 'blog.cryptochrisjames.com';
+}
+
+useHead({
+    title: getTitle(),
+    meta: [
+        { property: 'og:title', content: getTitle() },
+        { property: 'og:description', content: getDescription() },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: getUrl() },
+        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:image', content: '../../../assets/images/ccjlogoseo.jpg' },
+        { property: 'twitter:card', content: 'summary_large_image' },
+        { property: 'twitter:title', content: getTitle() },
+        { property: 'twitter:description', content: getDescription() },
+        { property: 'twitter:image', content: '../../../assets/images/ccjlogoseo.jpg' },
+        { property: 'twitter:creator', content: '@NamesChrisJames' },
+        { property: 'twitter:site', content: getUrl() },
+    ],
+})
 </script>
 
 <style lang="scss" scoped>

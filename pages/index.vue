@@ -80,6 +80,24 @@ const hasBlogs = (blogs) =>  { return blogs.blogs.length > 0 };
 const goToPost = (path) => {
     router.push(`post${path}`);
 };
+
+useHead({
+    title: 'CryptoChrisJames Blog',
+    meta: [
+        { property: 'og:title', content: 'CryptoChrisJames Blog' },
+        { property: 'og:description', content: 'Personal blog of Christopher James Smith' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'blog.cryptochrisjames.com' },
+        { property: 'og:locale', content: 'en_US' },
+        { property: 'og:image', content: '../assets/images/ccjlogoseo.jpg' },
+        { property: 'twitter:title', content: 'CryptoChrisJames Blog' },
+        { property: 'twitter:description', content: 'Personal blog of Christopher James Smith' },
+        { property: 'twitter:image', content: '../assets/images/ccjlogoseo.jpg' },
+        { property: 'twitter:card', content: 'summary_large_image' },
+        { property: 'twitter:site', content: 'blog.cryptochrisjames.com' },
+        { property: 'twitter:creator', content: '@NamesChrisJames' },
+    ],
+})
 </script>
 
 <style lang="scss" scoped>
