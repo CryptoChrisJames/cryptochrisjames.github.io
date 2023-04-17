@@ -6,43 +6,40 @@
             and everything else in between. 
         </h3>
     </div>
-    <div class="picker-container">
-        <div class="category-picker">
-            <div class="category" v-for="category in categories" :key="category">
-                <button 
-                    class="selector" 
-                    :class="[{'selected': selected == category}]" 
-                    @click="(select(category))"
-                >
-                    {{ category }}
-                </button>
+    <div class="content-container">
+        <div class="picker-container">
+            <div class="category-picker">
+                <div class="category" v-for="category in categories" :key="category">
+                    <button 
+                        class="selector" 
+                        :class="[{'selected': selected == category}]" 
+                        @click="(select(category))"
+                    >
+                        {{ category }}
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    <span v-for="blogs in blogsList" :key="blogs">
-        <span v-if="blogs.name == selected">
-            <span v-if="hasBlogs(blogs)">
-                <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
-                    <div class="article-container" @click="goToPost(blog._path)">
-                        <div class="image-container">
-                            <img :src="blog.img" alt="your image description">
-                        </div>
-                        <div class="text-container">
-                            <h2>{{ blog.title }}</h2>
-                            <p class="desc">{{ blog.description }}</p>
-                            <p class="date">{{ blog.date }}</p>
+        <span v-for="blogs in blogsList" :key="blogs">
+            <span v-if="blogs.name == selected">
+                <span v-if="hasBlogs(blogs)">
+                    <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
+                        <div class="article-container" @click="goToPost(blog._path)">
+                            <div class="text-container">
+                                <p>{{ blog.date }} <span class="date-style">&nbsp;&nbsp;&nbsp;{{ blog.title }}</span></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </span>            
-            <span style="text-align: center;" v-else>
-                <h3>
-                    There's currently no articles in this category. 
-                    Please check again later.
-                </h3>
-            </span>           
+                </span>            
+                <span style="text-align: center;" v-else>
+                    <h3>
+                        There's currently no articles in this category. 
+                        Please check again later.
+                    </h3>
+                </span>           
+            </span>
         </span>
-    </span>
+    </div>
 </template>
 
 <script setup>
@@ -65,7 +62,7 @@ for(var i = 0; i < categories.length; i++) {
     const category = categories[i];
     const { data } = await useAsyncData(category, 
         () => queryContent(`${routes[category]}`)
-            .only(['title', '_path', 'description', 'img', 'date'])
+            .only(['title', '_path', 'description', 'date'])
             .sort({ date: -1 })
             .find());
     var blog = {
@@ -110,6 +107,11 @@ useHead({
     margin: 15px auto;
     max-width: 444px;
     padding: 7px;
+}
+
+.content-container {
+    margin: 0 auto;
+    max-width: 444px;
 }
 .picker-container {
     margin: 0 auto;
@@ -171,13 +173,7 @@ useHead({
     }
 }
 
-.text-container {
-    flex-grow: 1;
-    padding-left: 20px;
-}
-
 .text-container h2 {
-    font-weight: 200;
     color: $yellow;
     margin-top: 10px;
 
@@ -198,5 +194,11 @@ useHead({
     font-size: 13px;
     font-weight: 200;
     margin-bottom: 10px;
+}
+
+.date-style {
+    font-size: 25px;
+    font-weight: 200;
+    color: $yellow;
 }
 </style>
