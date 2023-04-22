@@ -4,9 +4,9 @@
         <p class="article-info"> By Christopher Smith | {{ currentBlog.date }}</p>
         <p class="article-info">{{ currentBlog.description }}</p>
         <div class="divider"></div>
-        <div class="content-body">
+        <div class="content-body" ref="contentElement">
             <ContentRenderer>
-                <ContentRendererMarkdown  :value="currentBlog" />
+                <ContentRendererMarkdown :value="currentBlog" />
             </ContentRenderer>
         </div>
         <div class="article-nav">
@@ -32,6 +32,8 @@
 </template>
 
 <script setup>
+
+const contentElement = ref(null);
 const { category, post } = useRoute().params;
 const path = `/${category}/${post}`
 const { data } = await useAsyncData('post', 
@@ -40,6 +42,7 @@ const { data } = await useAsyncData('post',
 var currentBlog; 
 var previousBlog;
 var nextBlog;
+
 for (var i = 0; i < data._rawValue.length; i++) {
     if (data._rawValue[i]._path == path) {
         currentBlog = data._rawValue[i];
@@ -52,6 +55,18 @@ for (var i = 0; i < data._rawValue.length; i++) {
         break;
     }
 }
+
+onMounted(() => {
+    if (contentElement.value) {
+        const images = contentElement.value.getElementsByTagName('img');
+        for (const img of images) {
+            img.style.display = 'block';
+            img.style.maxWidth = '85%';
+            img.style.height = 'auto';
+            img.style.margin = '0 auto';
+        }
+    }
+});
 
 const goToPost = async (path) => {
     await navigateTo(`/post${path}`);
