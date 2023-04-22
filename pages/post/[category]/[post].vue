@@ -64,6 +64,7 @@ onMounted(() => {
             img.style.maxWidth = '85%';
             img.style.height = 'auto';
             img.style.margin = '0 auto';
+            img.style.padding = '25px 0';
         }
     }
 });
