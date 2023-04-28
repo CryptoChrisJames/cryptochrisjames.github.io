@@ -72,6 +72,12 @@ onMounted(() => {
             c.style.overflowX = 'auto';
         }
     }
+    if(contentElement.value) {
+        const links = contentElement.value.getElementsByTagName('a');
+        for (const a of links) {
+            a.style.color = '#61a0d7';
+        }
+    }
 });
 
 const goToPost = async (path) => {
