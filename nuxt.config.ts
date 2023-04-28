@@ -22,5 +22,7 @@ export default {
             Nunito: true,
         }
     },
-    plugins: [{ src: '~/plugins/vercel-analytics.js', mode: 'client' }],
+    plugins: [
+        { src: '~/plugins/vercel-analytics.js', mode: 'client' }
+    ]
 }

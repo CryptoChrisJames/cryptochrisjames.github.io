@@ -32,7 +32,6 @@
 </template>
 
 <script setup>
-
 const contentElement = ref(null);
 const { category, post } = useRoute().params;
 const path = `/${category}/${post}`
@@ -65,6 +64,12 @@ onMounted(() => {
             img.style.height = 'auto';
             img.style.margin = '0 auto';
             img.style.padding = '25px 0';
+        }
+    }
+    if (contentElement.value) {
+        const code = contentElement.value.getElementsByTagName('pre');
+        for (const c of code) {
+            c.style.overflowX = 'auto';
         }
     }
 });
@@ -116,6 +121,7 @@ useHead({
     -webkit-box-pack: justify;
     -webkit-box-align: center;
     align-items: center;
+    color: $white;
 }
 
 .article-title {
@@ -146,6 +152,10 @@ useHead({
 
 .content-body {
     font-size: 15px;
+
+    pre {
+        overflow-x: auto;
+    }
 }
 
 .article-nav {
