@@ -26,7 +26,8 @@
                     <div class="content-list" v-for="blog in blogs.blogs" :key="blog">
                         <div class="article-container" @click="goToPost(blog._path)">
                             <div class="text-container">
-                                <p>{{ blog.date }} <span class="date-style">&nbsp;&nbsp;&nbsp;{{ blog.title }}</span></p>
+                                <div class="blog-date"><p>{{ blog.date }}</p></div>
+                                <div class="blog-title"><p class="date-style">{{ blog.title }}</p></div>
                             </div>
                         </div>
                     </div>
@@ -113,6 +114,11 @@ useHead({
     margin: 0 auto;
     max-width: 444px;
 }
+
+.content-list {
+    margin: 0 auto;
+    width: 100%;
+}
 .picker-container {
     margin: 0 auto;
     max-width: 444px;
@@ -151,11 +157,6 @@ useHead({
     border-top: 2px solid $blue;
 }
 
-.article-container {
-    padding: 25px;
-    display: flex;
-}
-
 .image-container {
     display: flex;
     flex-basis: 50%;
@@ -180,6 +181,19 @@ useHead({
     @include phone {
         margin: 0;
     }
+}
+
+.text-container{
+    display: flex;
+    align-items: center;
+}
+
+.blog-date{
+    flex: 0.5;
+}
+
+.blog-title {
+    flex: 1;
 }
 
 .desc {
