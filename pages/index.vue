@@ -1,18 +1,18 @@
 <template>
     <div>
         <h3 class="welcome">
-            Welcome to the blog of Christopher James Smith (CryptoChrisJames)! 
-            This is the place where I discuss technology, entertainment, 
-            and everything else in between. 
+            Welcome to the blog of Christopher James Smith (CryptoChrisJames)!
+            This is the place where I discuss technology, entertainment,
+            and everything else in between.
         </h3>
     </div>
     <div class="content-container">
         <div class="picker-container">
             <div class="category-picker">
                 <div class="category" v-for="category in categories" :key="category">
-                    <button 
-                        class="selector" 
-                        :class="[{'selected': selected == category}]" 
+                    <button
+                        class="selector"
+                        :class="[{'selected': selected == category}]"
                         @click="(select(category))"
                     >
                         {{ category }}
@@ -31,13 +31,13 @@
                             </div>
                         </div>
                     </div>
-                </span>            
+                </span>
                 <span style="text-align: center;" v-else>
                     <h3>
-                        There's currently no articles in this category. 
+                        There's currently no articles in this category.
                         Please check again later.
                     </h3>
-                </span>           
+                </span>
             </span>
         </span>
     </div>
@@ -61,7 +61,7 @@ const select = (category) => {
 
 for(var i = 0; i < categories.length; i++) {
     const category = categories[i];
-    const { data } = await useAsyncData(category, 
+    const { data } = await useAsyncData(category,
         () => queryContent(`${routes[category]}`)
             .only(['title', '_path', 'description', 'date'])
             .sort({ date: -1 })
@@ -74,6 +74,11 @@ for(var i = 0; i < categories.length; i++) {
 };
 
 const hasBlogs = (blogs) =>  { return blogs.blogs.length > 0 };
+
+const test = () => {
+    console.log(blogsList);
+};
+
 
 const goToPost = (path) => {
     router.push(`post${path}`);
@@ -93,7 +98,7 @@ useHead({
         { property: 'twitter:image', content: 'https://blog.cryptochrisjames.com/images/ccjlogoseo.jpg' },
         { property: 'twitter:card', content: 'summary_large_image' },
         { property: 'twitter:site', content: 'blog.cryptochrisjames.com' },
-        { property: 'twitter:creator', content: '@NamesChrisJames' },
+        { property: 'twitter:creator', content: '@NamesChrisJames' }
     ],
 })
 </script>
@@ -160,7 +165,7 @@ useHead({
 .image-container {
     display: flex;
     flex-basis: 50%;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 

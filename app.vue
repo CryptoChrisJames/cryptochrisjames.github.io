@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div
-      class="nav-wrapper" 
+      class="nav-wrapper"
       :class="[{'navbar-hidden': !showNav}]">
       <div class="navbar-logo">
         <a @click="goHome()"><img src="./public/images/logo.png" alt="CCJ Logo"></a>

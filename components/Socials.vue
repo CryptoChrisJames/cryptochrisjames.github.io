@@ -21,12 +21,12 @@
     img {
         width: 35px;
         height: 35px;
-        filter: 
-            invert(97%) 
-            sepia(19%) 
-            saturate(6994%) 
-            hue-rotate(307deg) 
-            brightness(109%) 
+        filter:
+            invert(97%)
+            sepia(19%)
+            saturate(6994%)
+            hue-rotate(307deg)
+            brightness(109%)
             contrast(104%);
     }
 }
