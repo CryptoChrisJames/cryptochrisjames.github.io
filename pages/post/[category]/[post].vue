@@ -5,9 +5,7 @@
         <p class="article-info">{{ currentBlog.description }}</p>
         <div class="divider"></div>
         <div class="content-body" ref="contentElement">
-            <ContentRenderer>
-                <ContentRendererMarkdown :value="currentBlog" />
-            </ContentRenderer>
+            <ContentRenderer :value="currentBlog" />
         </div>
         <div class="article-nav">
             <div v-if="previousBlog" @click="goToPost(previousBlog._path)" class="prev">
@@ -76,6 +74,7 @@ onMounted(() => {
         const links = contentElement.value.getElementsByTagName('a');
         for (const a of links) {
             a.style.color = '#61a0d7';
+            a.style.textDecoration = 'none';
         }
     }
 });
